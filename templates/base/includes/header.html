@@ -1,0 +1,126 @@
+<header class="header1 oc-transparent-header">
+
+         <div id="header-sticky" class="header-main header-main1">
+            <div class="container header-container">
+               <div class="row align-items-center">
+                  <div class="col-xl-2 col-lg-2 col-md-4 col-4">
+                     <div class="header-main-left">
+                        <div class="header-logo header1-logo">
+                           <a href="{% url 'index-page' %}" class="logo-bb"><img src="{{ site_setting.site_logo_1.url }}" alt="logo-img"></a>
+                           <a href="{% url 'index-page' %}" class="logo-bw"><img src="{{ site_setting.site_logo_2.url }}" alt="logo-img"></a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-10 col-lg-10 col-md-8 col-8">
+                     <div class="header-main-right">
+                        <div class="main-menu main-menu1 d-none d-lg-block">
+                           <nav id="mobile-menu" style="display: block;">
+                              <ul>
+                                 <li><a href="{% url 'index-page' %}">خانه</a></li>
+                                 <li><a href="{% url 'aboutus-page' %}">درباره ی ما</a></li>
+                                 <li><a href="{% url 'news-list-page' 1 %}">اخبار</a></li>
+                                 <li><a href="{% url 'science-list-page' 1 %}">محتوای علمی</a></li>
+                                 <li><a href="{% url 'all-associations-page' 1 %}">انجمن ها</a></li>
+                                 <li><a href="{% url 'courses-list-page' 1 %}">دوره ها</a></li>
+                                 <li><a href="{% url 'teachers-list-page' %}">دبیران</a></li>
+                                 <li><a href="{% url 'contactus-page' %}">تماس با ما</a>
+                                 </li>
+                              </ul>
+                           </nav>
+                        </div>
+                        <div class="filter-search-input header-search d-none d-xl-inline-block"></div>
+                        <div class="profile-item profile-item-header ml-20 d-none d-md-inline-block pos-rel">
+                           <div class="profile-img pos-rel">
+                              <div class="profile-action">
+
+                                {% if is_user_login is True %}
+                                <ul>
+                                    <li><a href="{% url 'profile-page' %}"><i class="fal fa-user"></i>پروفایل</a></li>
+                                    <li><a href="{% url 'logout' %}"><i class="fal fa-sign-out"></i>خروج</a></li>
+                                    {% if user.is_superuser %}
+                                    <li><a href='{% url 'admin-panel'%}'><i class="fal fa-key"></i>ادمین</a></li>
+                                    {% endif %}
+                                </ul>
+                                    {% else %}
+                                <ul>
+                                    <li><a href="{% url 'register-page' %}"><i class="fal fa-sign-out"></i>ثبت نام</a></li>
+                                    <li><a href="{% url 'login-page' %}"><i class="fal fa-sign-out"></i>ورود</a></li>
+                                </ul>
+                                {% endif %}
+                              </div>
+                            {% if user.avatar %}
+                                <img src="{{ user.avatar.url }}" alt="profile-img" style="border-radius: 50%; width: 60px">
+                            {% else %}
+                                <img src="/static/assets/img/defult-avatar.png" alt="profile-img" style="border-radius: 50%; width: 60px">
+                            {% endif %}
+                              <div class="profile-verification verified">
+                                 <i class="fas fa-check"></i>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="menu-bar d-xl-none ml-20">
+                           <a class="side-toggle" href="javascript:void(0)">
+                              <div class="bar-icon">
+                                 <span></span>
+                                 <span></span>
+                                 <span></span>
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+
+      <div class="fix">
+         <div class="side-info">
+            <div class="side-info-content">
+               <div class="offset-widget offset-logo mb-40">
+                  <div class="row align-items-center">
+                     <div class="col-9">
+                        <a href="{% url 'index-page' %}">
+                           <img src="{{ site_setting.site_logo_2.url }}" alt="Logo">
+                        </a>
+                     </div>
+                     <div class="col-3 text-end"><button class="side-info-close"><i class="fal fa-times"></i></button>
+                     </div>
+                  </div>
+               </div>
+               <div class="mobile-menu d-lg-none fix"></div>
+               <div class="offset-profile-action d-md-none">
+                  <div class="offset-widget mb-40">
+                     <div class="profile-item profile-item-header into-sidebar d-md-none">
+                        <div class="profile-img pos-rel">
+                              <div class="profile-action">
+
+                                {% if is_user_login is True %}
+                                <ul>
+                                    <li><a href="{% url 'profile-page' %}"><i class="fal fa-user"></i>پروفایل</a></li>
+                                    <li><a href="{% url 'logout' %}"><i class="fal fa-sign-out"></i>خروج</a></li>
+                                    {% if user.is_superuser %}
+                                    <li><a href='{% url 'admin-panel'%}'><i class="fal fa-key"></i>ادمین</a></li>
+                                    {% endif %}
+                                </ul>
+                                    {% else %}
+                                <ul>
+                                    <li><a href="{% url 'register-page' %}"><i class="fal fa-sign-out"></i>ثبت نام</a></li>
+                                    <li><a href="{% url 'login-page' %}"><i class="fal fa-sign-out"></i>ورود</a></li>
+                                </ul>
+                                {% endif %}
+                              </div>
+                            {% if user.avatar %}
+                                <img src="{{ user.avatar.url }}" alt="profile-img" style="border-radius: 50%; width: 50px">
+                            {% else %}
+                                <img src="/static/assets/img/defult-avatar.png" alt="profile-img" style="border-radius: 50%; width: 50px">
+                            {% endif %}
+                        </div>
+                     </div>
+                  </div>
+
+            </div>
+         </div>
+      </div>
+      <div class="offcanvas-overlay"></div>
+      <div class="offcanvas-overlay-white"></div>

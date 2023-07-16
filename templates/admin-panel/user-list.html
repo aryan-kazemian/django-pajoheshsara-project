@@ -1,0 +1,84 @@
+{% extends 'admin-panel/base/base.html' %}
+{% block content %}
+<div class="col-md-12">
+<!-- DATA TABLE -->
+<section class="au-breadcrumb2" style="text-align: right">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                                <form class="au-form-icon--sm" action="{% url 'admin-panel-user-list' 'all' 1 %}" method="post">
+                                    {% csrf_token %}
+                                    {{ form.search_box }}
+                                    <button class="au-btn--submit2" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<div class="table-responsive table-responsive-data2" style="text-align: right">
+                                    <table class="table table-data2" style="text-align: right">
+                                        <thead style="text-align: right">
+                                            <tr style="text-align: right">
+                                                <th>فعال / غیر فعال</th>
+                                                <th>شماره موبایل</th>
+                                                <th>نام خانوادگی</th>
+                                                <th>نام</th>
+                                                <th>نام کاربری</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for user in users %}
+                                            <tr class="tr-shadow">
+                                                <td>
+                                                    {% if user.is_active %}
+                                                        <span class="status--process">فعال</span>
+                                                    {% else %}
+                                                        <span class="status--process" style="color: #7a0909">غیر فعال</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <span class="block-email">{{ user.phone_number }}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="block-email">{{ user.last_name }}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="block-email">{{ user.first_name }}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="block-email">{{ user.username }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="spacer"></tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            <br>
+                           {% if has_other_page %}
+                <div class="row"><div class="col-12" style="text-align: right">
+                                    <div class="basic-pagination mt-20">
+                                       <ul>
+                                       {% if has_next %}
+<button type="button" class="btn btn-secondary" disabled=""><a href="{% url 'admin-panel-user-list' search next_page_number %}" style='text-decoration: none; color: whitesmoke'>بعدی</a></button>
+                                        {% endif %}
+
+                                        {% for number in page_range %}
+<button type="button" class="btn btn-secondary active {% if current_page == number %}btn btn-secondary btn-lg active{% endif %}" disabled=""><a href="{% url 'admin-panel-user-list' search number %}" style='text-decoration: none; color: whitesmoke'>{{ number }}</a></button>
+                                        {% endfor %}
+                                        {% if has_previous %}
+<button type="button" class="btn btn-secondary" disabled=""><a href="{% url 'admin-panel-user-list' search previous_page_number %}" style='text-decoration: none; color: whitesmoke'>قبلی</a></button>
+                                        {% endif %}
+                                       </ul>
+                                    </div>
+                                 </div></div>
+                            {% endif %}
+<!-- END DATA TABLE -->
+</div>
+{% endblock %}

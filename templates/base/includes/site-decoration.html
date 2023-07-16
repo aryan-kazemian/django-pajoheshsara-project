@@ -1,0 +1,22 @@
+
+{% if site_setting.decoration == "white_or_dark" %}
+    <div class="mode-switch-wrapper my_switcher setting-option">
+      <input type="checkbox" class="checkbox" id="chk">
+      <label class="label" for="chk">
+         <i class="fas fa-moon setColor dark theme__switcher-btn" data-theme="dark"></i>
+         <i class="fas fa-sun setColor light theme__switcher-btn" data-theme="light"></i>
+         <span class="ball"></span>
+      </label>
+   </div>
+    {% elif site_setting.decoration == 'white' %}
+    {% elif site_setting.decoration == 'dark' %}
+    <div hidden class="mode-switch-wrapper my_switcher setting-option">
+      <input type="checkbox" class="checkbox" id="chk">
+      <label class="label" for="chk">
+         <i class="fas fa-moon setColor dark theme__switcher-btn active" data-theme="dark"></i>
+         <i class="fas fa-sun setColor light theme__switcher-btn" data-theme="light"></i>
+         <span class="ball"></span>
+      </label>
+   </div>
+{% endif %}
+

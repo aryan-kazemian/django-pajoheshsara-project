@@ -1,0 +1,257 @@
+{% extends 'base/base.html' %}
+{% load thumbnail %}
+{% load polls_extra %}
+{% block title %}
+صفحه ی اصلی سایت پژوهش سرای نجف اباد
+{% endblock %}
+{% block content %}
+      <!-- banner area start  -->
+      <div class="banner-area banner-area2 pos-rel">
+         <div class="swiper-container banner2-container">
+            <div class="swiper-wrapper">
+               <div class="swiper-slide">
+                  <div class="single-banner single-banner-2 banner-670 d-flex align-items-center pos-rel">
+                     <div class="banner-bg" data-background="">
+                        <img src="/static/assets/img/banner/oc-banner-bg2.png" alt="">
+                     </div>
+                     <div class="banner-bg-light" data-background="">
+                        <img src="/static/assets/img/banner/oc-banner-bg2-light.png" alt="">
+                     </div>
+                     <div class="container pos-rel">
+                        <div class="row align-items-center justify-content-center">
+                           <div class="col-xxl-8 col-lg-10">
+                              <div class="banner-content banner-content2 banner-content2-1 pt-120">
+                                 <h1 data-animation="fadeInUp" data-delay=".3s" class="mb-25 font-prata">
+                                     {{ site_settings.h1_text_main_page }}</h1>
+                                 <p data-animation="fadeInUp" data-delay=".5s" class="mb-40">{{ site_settings.under_h1_text }}</p>
+                                  {% if site_settings.any_button %}
+                                       <div class="banner-btn" data-animation="fadeInUp" data-delay=".7s">
+                                    <a href="{{ site_settings.button_link }}" class="fill-btn">{{ site_settings.button_text}}</a>
+                                 </div>
+                                  {% endif %}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- If we need navigation buttons -->
+            <div class="slider-nav d-none">
+               <div class="slider-button-prev"><i class="fal fa-long-arrow-right"></i></div>
+               <div class="slider-button-next"><i class="fal fa-long-arrow-left"></i></div>
+            </div>
+         </div>
+      </div>
+      <!-- banner area end  -->
+
+      <!-- artwork slider area start  -->
+      <div class="auction2-area blockquote">
+         <div class="container auction2-container">
+            <div class="row wow fadeInUp" style="   visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-12">
+                  <div class="auction2-wrapper pos-rel">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="swiper-container auction2-active swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events swiper-container-rtl">
+<div class="swiper-wrapper" id="swiper-wrapper-848db86529b41d3a" aria-live="off" style="transform: translate3d(1440px, 0px, 0px); transition-duration: 0ms;"><div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" role="group" aria-label="5 / 9" style="width: 450px; margin-left: 30px;" data-swiper-slide-index="1">
+                              <div class="art-item-single art-item2-single mb-0">
+                                 <div class="art-item-wraper">
+                                    <div class="art-item-inner">
+                                       <div class="art-item-img pos-rel">
+                                          <a href="art-details.html"><img src="/static/assets/img/bids/oc-bids2-2.jpg" alt="art-img"></a>
+                                          <a href="#" class="place-bid">پیشنهاد دهید</a>
+                                       </div>
+                                       <div class="art-item-content pos-rel">
+                                          <div class="artist">
+                                             <div class="profile-img pos-rel">
+                                                <a href="creator-profile.html"><img src="/static/assets/img/profile/profile3.jpg" alt="profile-img"></a>
+                                                <div class="profile-verification verified">
+                                                   <i class="fas fa-check"></i>
+                                                </div>
+                                             </div>
+                                             <div class="creator-name-id">
+                                                <h4 class="artist-name"><a href="creator-profile.html">داود حبیبی</a>
+                                                </h4>
+                                                <div class="artist-id">david@</div>
+                                             </div>
+                                          </div>
+                                          <h4 class="art-name"><a href="art-details.html">جعبه کادو</a></h4>
+                                          <div class="art-meta-info">
+                                             <div class="art-meta-item">
+                                                <div class="art-meta-type">نرخ مزایده</div>
+                                                <div class="art-price">76.87 ETH</div>
+                                             </div>
+                                             <div class="art-meta-item">
+                                                <div class="art-meta-type">پایان مزایده</div>
+                                                <div class="art-auction-ends" data-countdown="2023/09/22"><div class="count_down">161<span></span></div><div class="count_down"> : 08<span></span></div><div class="count_down"> : 24<span></span></div><div class="count_down"> : 57<span></span></div></div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div><div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" role="group" aria-label="6 / 9" style="width: 450px; margin-left: 30px;" data-swiper-slide-index="2">
+                           </div>
+
+
+
+{% for news in latest_news %}
+    <div class="swiper-slide swiper-slide-active" role="group" aria-label="5 / 9" style="width: 450px; margin-left: 30px;" data-swiper-slide-index="1">
+                              <div class="art-item-single art-item2-single mb-0">
+                                 <div class="art-item-wraper">
+                                    <div class="art-item-inner">
+                                       <div class="art-item-img pos-rel">
+                                       {% thumbnail news.image_on_news_list_page "200x200" quality=95 crop='center' as im  %}
+                                          <a href="{% url 'news-detail-page' news.url_title %}"><img src="{{ im.url }}" alt="art-img"></a>
+                                       {% endthumbnail %}
+
+                                       </div>
+                                       <div class="art-item-content pos-rel">
+                                          <h4 class="art-name"><a href="{% url 'news-detail-page' news.url_title %}">{{ news.title }}</a></h4>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+
+                           </div>
+{% endfor %}
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- artwork slider area end  -->
+
+
+    <section class="oc-wallet-area pt-80 pb-100">
+         <div class="container">
+
+         </div>
+      </section>
+    <section class="oc-wallet-area pt-80 pb-100">
+         <div class="container">
+
+         </div>
+      </section>
+      <!-- artwork area start  -->
+      <section class="artworks-area artworks-area-bg pt-110 pb-100" style="margin-top: 350px">
+         <div class="container">
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-4">
+                  <div class="section-title1">
+                     <h2 class="section-main-title1 mb-40">جدید ترین دوره ها</h2>
+                  </div>
+               </div>
+               <div class="col-lg-8">
+               </div>
+            </div>
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                    {% for course in latest_courses %}
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                  <div class="art-item-single mb-30">
+                     <div class="art-item-wraper">
+                        <div class="art-item-inner">
+                           <div class="art-item-img pos-rel">
+                               {% thumbnail course.image_on_courses_list "200x200" quality=95 crop='center' as im  %}
+                              <a href="{% url 'course-detail-page' course.name %}"><img src="{{ im.url }}" alt="art-img"></a>
+                               {% endthumbnail %}
+                           </div>
+                           <div class="art-item-content pos-rel">
+                              <h4 class="art-name"><a href="{% url 'course-detail-page' course.name %}">{{ course.name }}</a></h4>
+                              <div class="art-meta-info">
+                                 <div class="art-activity-btn">
+                                     <div class="art-activity-btn">وضعیت : {{ course.situation }} </div>
+                                     <div class="art-activity-btn">قیمت : {{ course.price | three_digits_currency }} </div>
+
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                    {% endfor %}
+
+            </div>
+         </div>
+      </section>
+      <!-- artwork area end  -->
+
+      <!-- artwork area start  -->
+    {% if associations %}
+      <section class="artworks-area artworks-area-bg pt-110 pb-100">
+         <div class="container">
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-4">
+                  <div class="section-title1">
+                     <h2 class="section-main-title1 mb-40">بهترین انجمن ها</h2>
+                  </div>
+               </div>
+               <div class="col-lg-8">
+               </div>
+            </div>
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                {% for association in associations %}
+                   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                  <div class="art-item-single mb-30">
+                     <div class="art-item-wraper">
+                        <div class="art-item-inner">
+                           <div class="art-item-img pos-rel">
+                              <div class="art-action">
+                                 <div class="art-action-collection"><i class="flaticon-plus-sign"></i></div>
+                              </div>
+                               {% thumbnail association.association_image "200x200" quality=95 crop='center' as im  %}
+                              <a href="{% url 'association-detail-page' association.association_name %}"><img src="{{ im.url}}" alt="art-img"></a>
+                               {% endthumbnail %}
+                           </div>
+                           <div class="art-item-content pos-rel">
+                              <h5 class="art-name"><a href="{% url 'association-detail-page' association.association_name %}">{{ association.association_name }}</a></h5>
+                              <div class="art-meta-info">
+                                 <div class="art-activity-btn">
+                                    وضعیت :
+                                     {{ association.situation }}
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                {% endfor %}
+            </div>
+         </div>
+      </section>
+    {% endif %}
+      <!-- artwork area end  -->
+{% endblock %}
+{% block footer_refrences %}
+{% if contact %}
+   <script src="/static/assets/js/sweet-alert.js"></script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,41 @@
+{%  extends 'base/base.html' %}
+{% block title %}
+    ثبت نام در پژوهش سرا
+{% endblock %}
+{% block content %}
+<section class="sign-up-area pt-130 pb-90" >
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-7">
+                  <div class="sign-up-wrapper pos-rel mb-40 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                     <div class=" sign-up-inner">
+                        <div class="sign-up-content">
+                            <h4>تایید شماره موبایل</h4>
+                           <h6>یک کد 4 رقمی برای شماره ی وارد شده ارسال شده لطفا کد را وارد کنید </h6>
+                           <form class="sign-up-form" action="{% url 'security-cod-page' username %}" method="post">
+                               {% csrf_token %}
+                              <div class="row">
+                                 <div class="col-md-12">
+                                    <div class="single-input-unit">
+                                        {{ form.security_cod }}
+                                        {% if dose_it_has_error is True %}
+                                        {{ error_text }}
+                                        {% endif %}
+                                    </div>
+                                 </div>
+
+                              </div>
+                              <div class="sign-up-btn">
+                                 <button type="submit" class="fill-btn">تایید</button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                     <div class="sign-up-with-social">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+{% endblock %}

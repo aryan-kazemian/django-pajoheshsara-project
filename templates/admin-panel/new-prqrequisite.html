@@ -1,0 +1,35 @@
+{% extends 'admin-panel/base/base.html' %}
+{% block content %}
+<div class="col-lg-12" style="text-align: right; margin-top: 50px">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>ساخت پیشنیاز جدید</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="{% url 'admin-panel-create-new-prerequisite' %}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.prerequisite }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">پیشنیاز</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                            <div class="col-12 col-md-6">
+                                                                                            {{ form.course }}
+                                                </div>
+                                                                                            <div class="col col-md-1">
+                                                    <label for="select" class=" form-control-label">دوره</label>
+                                                </div>
+                                                                                        </div>
+                                            <button type="submit" class="btn btn-primary btn-sm" style="width: 100px">ساخت </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+{% endblock %}

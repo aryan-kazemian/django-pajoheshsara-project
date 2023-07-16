@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+{% load thumbnail %}
+{% block title %}
+صفحه ی اخبار
+{% endblock %}
+{% block content %}
+<section class="page-title-area">
+         <div class="container">
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-12">
+                  <div class="page-title">
+                     <h2 class="breadcrumb-title mb-10">موضوعات علمی</h2>
+                     <div class="breadcrumb-menu">
+                        <nav class="breadcrumb-trail breadcrumbs">
+                           <ul class="trail-items">
+                              <li class="trail-item trail-begin"><a href="{% url 'index-page' %}">خانه</a>
+                              </li>
+                              <li class="trail-item trail-end"><span>موضوعات علمی</span></li>
+                           </ul>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+<div class="blockquote"></div>
+
+    <section class="live-auction-area pt-80 pb-100">
+         <div class="container">
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-12 row wow fadeInUp">
+                {% for n in all_science %}
+                  <div class="col-sm-4 art-item-single mb-30">
+                                 <div class="art-item-wraper">
+                                    <div class="art-item-inner">
+                                       <div class="art-item-img pos-rel">
+                                          <div class="art-action">
+                                          </div>
+                                          {% thumbnail n.image_on_science_list_page "200x200" quality=95 crop='center' as im  %}
+                                          <a href="{% url 'science-detail-page' n.url_title %}"><img src="{{ im.url }}" alt="art-img"></a>
+                                          {% endthumbnail %}
+                                       </div>
+                                       <div class="art-item-content pos-rel">
+                                          <h4 class="art-name"><a href="{% url 'science-detail-page' n.url_title %}">{{ n.title }}</a></h4>
+                                          <a href="{% url 'science-detail-page' n.url_title %}" class="place-bid">مشاهده</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                {% endfor %}
+
+                           {% if has_other_page %}
+                <div class="row"><div class="col-12">
+                                    <div class="basic-pagination mt-20">
+                                       <ul>
+                                        {% if has_previous %}
+                                            <li><a class="prev page-numbers" href="{% url 'science-list-page' previous_page_number %}">
+                                                <i class="fal fa-angle-right"></i>
+                                             </a></li>
+                                        {% endif %}
+                                        {% for number in page_range %}
+                                            <a href="{% url 'science-list-page' number %}"><li><span aria-current="page" class="page-numbers {% if current_page == number %}current{% endif %}">{{ number }}</span></li></a>
+                                        {% endfor %}
+                                        {% if has_next %}
+                                          <li><a class="prev page-numbers" href="{% url 'science-list-page' next_page_number %}">
+                                                <i class="fal fa-angle-left"></i>
+                                             </a></li>
+                                        {% endif %}
+                                       </ul>
+                                    </div>
+                                 </div></div>
+                            {% endif %}
+               </div>
+            </div>
+         </div>
+      </section>
+{% endblock %}

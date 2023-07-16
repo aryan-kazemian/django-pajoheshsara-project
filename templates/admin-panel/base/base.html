@@ -1,0 +1,19 @@
+<html lang="en"><head>
+    {% load render_partial %}
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Admin</title>
+{% include 'admin-panel/base/includes/css-files.html' %}
+<body class="animsition" style="animation-duration: 900ms; opacity: 1;">
+<div class="page-wrapper">
+{% render_partial 'admin_panel.views.admin_header_render_partial' %}
+{% block content %}{% endblock %}
+    </div>
+{% include 'admin-panel/base/includes/js-files.html' %}
+</body></html>

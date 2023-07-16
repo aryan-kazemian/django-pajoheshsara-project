@@ -1,0 +1,55 @@
+{%  extends 'base/base.html' %}
+{% block title %}
+    ثبت نام در پژوهش سرا
+{% endblock %}
+{% block content %}
+<section class="sign-up-area pt-130 pb-90" >
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-7">
+                  <div class="sign-up-wrapper pos-rel mb-40 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                     <div class=" sign-up-inner">
+                        <div class="sign-up-content">
+                           <h4>ورود به حساب کاربری</h4>
+
+
+
+                           <form class="sign-up-form" action="{%  url 'login-page' %}" method="post">
+                               {% csrf_token %}
+                              <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="single-input-unit">
+                                        {{ form.username }}
+                                    </div>
+                                 </div>
+                                 <div class="col-md-6">
+                                    <div class="single-input-unit">
+                                        {{ form.password }}
+                                    </div>
+                                 </div>
+                              </div>
+                               {{ error }}
+                              <div class="sign-up-btn">
+                                 <button type="submit" class="fill-btn">ورود</button>
+                                 <div class="note">اکانت ندارید ؟ <a href="{% url 'register-page' %}" class="text-btn">ساخت اکانت</a></div>
+                                 <div class="note">رمز عبور را فراموش کرده اید ؟ <a href="{% url 'get-username-page' %}" class="text-btn">بازگردانی رمز عبور</a></div>
+                              </div>
+                           </form>
+
+
+
+                        </div>
+                     </div>
+                     <div class="sign-up-with-social">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+{% endblock %}
+{% block footer_refrences %}
+    {% if check_number %}
+       <script src="/static/assets/js/checknumber.js"></script>
+    {% endif %}
+{% endblock %}

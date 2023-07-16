@@ -1,0 +1,7 @@
+                     <div class="profile-setting-list">
+                        <ul>
+                           <li class="{% if request.resolver_match.url_name == 'profile-page' %}active{% endif %} "><a href="{% url 'profile-page' %}"><i class="flaticon-account"></i>اطلاعات شخصی</a></li>
+                           <li class="{% if request.resolver_match.url_name == 'profile-change-password-page' %}active{% endif %}"><a href="{% url 'profile-change-password-page' %}"><i class="flaticon-account"></i>تغیر رمز عبور</a></li>
+                           <li class="{% if request.resolver_match.url_name == 'purchased-courses-page' %}active{% endif %}"><a href="{% url 'purchased-courses-page' %}"><i class="flaticon-account"></i>دوره های خریداری شده</a></li>
+                        </ul>
+                     </div>

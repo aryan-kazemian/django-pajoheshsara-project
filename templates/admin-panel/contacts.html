@@ -1,0 +1,33 @@
+{% extends 'admin-panel/base/base.html' %}
+{% load jalali_tags %}
+{% block content %}
+<div class="col-lg-12">
+								<div class="card" style="margin-top: 100px ; text-align: right">
+									<div class="card-header">
+										<h4>{{ contact.subject }}</h4>
+									</div>
+									<div class="card-body">
+										<p class="text-muted m-b-15">{{ contact.text }}</p>
+												<p>{{ contact.name }}</p>
+												<p>{{ contact.date | to_jalali }} , {{ contact.time }}</p>
+                                                <br>
+                                    </div>
+                                </div>
+							</div>
+                                        <div class="card" style="text-align: right; margin-top: 100px">
+                                    <div class="card-header">
+                                        <strong>پاسخ به تماس با ما</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="{% url 'admin-panel-contacts' contact.id %}" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row form-group">
+                                                <div class="col-12 col-md-12" style="text-align: right">
+                                                    {{ form.text }}
+                                                </div>
+                                            </div>
+                                        <button type="submit" class="btn btn-outline-secondary">ارسال</button>
+                                        </form>
+                                    </div>
+                                </div>
+{% endblock %}

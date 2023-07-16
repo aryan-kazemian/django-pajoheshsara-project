@@ -1,0 +1,70 @@
+<footer data-background="" class="footer1-bg">
+      <section class="footer-area footer-area1 footer-area1-bg pt-100 pb-50">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-md-6">
+                  <div class="footer-widget footer1-widget footer1-widget1 mb-40">
+                     <div class="footer-logo mb-30">
+                        <a href="{% url 'index-page' %}" class="logo-bb"><img src="{{ site_setting.site_logo_1.url }}" alt="logo-img"></a>
+                        <a href="{% url 'index-page' %}" class="logo-bw"><img src="{{ site_setting.site_logo_2.url}}" alt="logo-img"></a>
+                     </div>
+                     <p class="mb-35">{{ site_setting.footer_text }}</p>
+                     <div class="social__links footer__social">
+                        <ul>
+                           <li><a href="{{ site_setting.facebook_link }}"><i class="fab fa-facebook-f"></i></a></li>
+                           <li><a href="{{ site_setting.twitter_link }}"><i class="fab fa-twitter"></i></a></li>
+                           <li><a href="{{ site_setting.instagram_link }}"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+
+            {% for category in footer_category %}
+            <div class="col-lg-3 col-md-6">
+                  <div class="footer-widget footer1-widget footer1-widget2 mb-40">
+                     <div class="footer-widget-title">
+                        <h4>{{ category.category_name }}</h4>
+                     </div>
+                     <ul>
+                       {% for link in category.footerboxsubmodel_set.all %}
+                           <li><a href="{{ link.link }}">{{ link.title }}</a></li>
+                       {% endfor %}
+                     </ul>
+                  </div>
+               </div>
+            {% endfor %}
+                </div>
+         </div>
+      </section>
+      <div class="copyright-area copyright1-area">
+         <div class="container">
+            <div class="copyright1-inner">
+               <div class="row align-items-center">
+                  <div class="col-lg-3 col-md-6">
+                     <div class="copyright-text copyright1-text">
+                         طراحی و توسعه
+                         <p>آرین کاظمیان</p>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6">
+                     <div class="irc-item copyright-support copyright1-support copyright-support-lines">
+                        <div class="irc-item-icon">
+                           <i class="flaticon-support"></i>
+                        </div>
+                        <div class="irc-item-content">
+                           <p>پشتیبانی</p>
+                           <a href="tel:02122334455">{{ site_setting.footer_phone_number }}</a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-5 col-md-12">
+                     <form class="subscribe-form subscribe-form-copyright1">
+                        <input type="text" placeholder="ایمیل معتبر وارد کنید">
+                        <button type="submit">عضویت<i class="fas fa-paper-plane"></i></button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>

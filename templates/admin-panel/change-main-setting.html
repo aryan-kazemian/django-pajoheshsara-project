@@ -1,0 +1,160 @@
+{% extends 'admin-panel/base/base.html' %}
+{% block content %}
+<div class="col-lg-12" style="text-align: right; margin-top: 50px">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>تغیر تنظیمات اصلی</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="{% url 'admin-panel-change-main-setting' pk %}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.site_setting_name }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">نام تنظیمات</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.site_logo_1 }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">لوگو ی سایت</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.site_logo_2 }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">لوگو ی سایت</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.h1_text_main_page }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">عنوان سایز h1</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.under_h1_text }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">متن زیر عنوان h1</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.any_button }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">دکمه ی زیر متن فعال / غیر فعال</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.button_text }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">نوشته ی دکمه</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.button_link }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">لینک دکمه</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.decoration }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">دکوریشن</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.footer_text }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">متن فوتر</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.twitter_link }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">لینک توییتر</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.instagram_link }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">لینک اینستاگرام</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.facebook_link }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">لینک فیس بوک</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.footer_phone_number }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">شماره تماس در فوتر</label>
+                                                                                                </div>
+                                                                                            </div>
+                                            <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.is_active }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">فعال / غیر فعال</label>
+                                                                                                </div>
+                                                                                            </div>
+
+
+
+
+
+
+                                                                                    <button type="submit" class="btn btn-primary btn-sm" style="width: 100px">  ایجاد تفیرات </button>
+                                        </form>
+                                        <br>
+                                        <a href="{% url 'admin-panel-delete-main-setting' pk %}"><button type="reset" class="btn btn-danger btn-sm" style="width: 100px">حذف تنظیمات اصلی</button></a>
+                                    </div>
+
+                                </div>
+                            </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'admin-panel/base/base.html' %}
+{% block content %}
+<div class="col-md-12">
+<!-- DATA TABLE -->
+<section class="au-breadcrumb2" style="text-align: right">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<div class="col-md-12">
+                                <!-- DATA TABLE-->
+                                <div class="table-responsive m-b-40">
+                                <a href="{% url 'create-xlsx-file' pk %}"><button type="button" class="btn btn-secondary btn-lg active" style="margin-left: 1760px; margin-bottom: 10px">دانلود فایل</button></a>
+
+                                    <table class="table table-borderless table-data3">
+                                        <thead>
+                                            <tr>
+                                                <th>تاریخ تولد</th>
+                                                <th>مدرسه</th>
+                                                <th>شماره تلفن</th>
+                                                <th>شماره موبایل</th>
+                                                <th>پایه تحصیلی</th>
+                                                <th>کد ملی</th>
+                                                <th>نام خانوادگی</th>
+                                                <th>نام</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for user in users %}
+                                        <tr>
+                                                <td>{{ user.birthday }}</td>
+                                                <td>{{ user.school }}</td>
+                                                <td>{{ user.home_phone_number }}</td>
+                                                <td>{{ user.phone_number }}</td>
+                                                <td>{{ user.grade }}</td>
+                                                <td>{{ user.kode_meli }}</td>
+                                                <td>{{ user.last_name }}</td>
+                                                <td>{{ user.first_name }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END DATA TABLE-->
+                            </div>
+<!-- END DATA TABLE -->
+</div>
+{% endblock %}

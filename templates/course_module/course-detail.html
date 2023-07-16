@@ -1,0 +1,164 @@
+{% extends 'base/base.html' %}
+{% load thumbnail %}
+{% load polls_extra %}
+{% block title %}
+جزییات دوره
+{% endblock %}
+{% block content %}
+<section class="page-title-area">
+         <div class="container">
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-12">
+                  <div class="page-title">
+                     <h2 class="breadcrumb-title mb-10">جزییات دوره</h2>
+                     <div class="breadcrumb-menu">
+                        <nav class="breadcrumb-trail breadcrumbs">
+                           <ul class="trail-items">
+                              <li class="trail-item trail-begin"><a href="{% url 'index-page' %}">خانه</a>
+                              </li>
+                              <li class="trail-item"><a href="{% url 'courses-list-page' 1 %}">دوره ها</a>
+                              </li>
+                              <li class="trail-item trail-end"><span>جزئیات دوره</span></li>
+                           </ul>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+ </section>
+<section class="art-details-area pt-130 pb-0">
+         <div class="container">
+            <div class="art-details-wrapper">
+               <div class="row">
+                  <div class="col-xl-6 col-lg-5">
+                     <div class="art-item-img pos-rel art-details-img wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                                                        {% thumbnail course.image_on_course_detail "200x200" quality=95 crop='center' as im  %}
+                        <a class="image-popups" href="{{ im.url }}"><img src="{{ im.url }}" alt="art-img"></a>
+                                                        {% endthumbnail %}                     </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-7">
+                     <div class="art-details-content wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                        <div class="created-by">دبیر دوره</div>
+                        <div class="creator mb-30">
+                           <div class="profile-img pos-rel">
+                               {% if course.teacher.avatar %}
+                                  <img src="{{ course.teacher.avatar.url }}" alt="profile-img" style="border-radius: 50%; width: 80px" height="80px">
+                               {% endif %}
+                              <div class="profile-verification verified">
+                                 <i class="fas fa-check"></i>
+                              </div>
+                           </div>
+                           <div class="creator-name-id">
+                              <h4 class="artist-name ">{{ course.teacher.first_name  }} {{ course.teacher.last_name }}</h4>
+                              <div class="artist-id"> <a href="{% url 'teacher-profile-page' course.teacher.username     %}">{{ course.teacher.username }}@</a></div>
+                           </div>
+                        </div>
+                        <div class="art-name-details">
+                           <h4 class="art-name mb-25">{{ course.name }}</h4>
+                           <p>{{ course.short_information }}</p>
+                        </div>
+                        <div class="artist-meta-info art-details-meta-info">
+                           <div class="art-meta-item artist-meta-item-border">
+                              <div class="art-meta-type">قیمت</div>
+                              <div class="art-meta-notice">{{ course.price | three_digits_currency }}</div>
+                           </div>
+                           <div class="art-meta-item artist-meta-item-border">
+                              <div class="art-meta-type">وضعیت دوره</div>
+                              <div class="art-meta-notice">{{ course.situation }}</div>
+                           </div>
+                           <div class="art-meta-item">
+                              <div class="art-meta-type">ساعت برگزاری</div>
+                              <div class="art-meta-notice">{{ course.time }}</div>
+                           </div>
+                        </div>
+                        <div class="art-details-information">
+                           <div class="art-information-tab-nav mb-20">
+                              <nav>
+                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-bid-tab" data-bs-toggle="tab" data-bs-target="#tab-nav1" type="button" role="tab" aria-selected="true">
+                                       <span class="profile-nav-button">توضیحات کامل دوره
+                                       </span>
+                                    </button>
+                                    <button class="nav-link" id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#tab-nav2" type="button" role="tab" aria-selected="false">
+                                       <span class="profile-nav-button">پیش نیاز های دوره
+                                       </span>
+                                    </button>
+                                 </div>
+                              </nav>
+                           </div>
+                           <div class="art-information-tab-contents mb-0">
+                              <div class="tab-content" id="nav-tabContent">
+                                 <div class="tab-pane fade active show" id="tab-nav1" role="tabpanel" aria-labelledby="nav-bid-tab">
+                                    <div class="placed-bids-wrapper">
+                                    {{ course.full_information }}
+                                    </div>
+                                 </div>
+                                 <div class="tab-pane fade" id="tab-nav2" role="tabpanel" aria-labelledby="nav-info-tab">
+                                    <div class="art-user-wrapper">
+                                       <ul class="mb-20">
+                                           {% for prerequisite in course.prerequisitemodels_set.all %}
+                                            <li>{{ prerequisite }}</li>
+                                           {% endfor %}
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                    {% if not purchased %}
+                        {% if course.register_time %}
+                  <hr>
+                  <btn class="fill-btn"><a href="{% url 'zarin-pall-page' course.name %}">خرید دوره</a></btn>
+                        {% endif %}
+                    {% endif %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+
+<section class="related-items-area pt-110 pb-100">
+         <div class="container">
+            <div class="row justify-content-center wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-8">
+                  <div class="section-title1 text-center">
+                     <h2 class="section-main-title1">دوره های مرتبط</h2>
+                      <hr>
+                  </div>
+               </div>
+            </div>
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                {% for cours in related_courses %}
+                    {% if not course.name == cours.name %}
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                  <div class="art-item-single mb-30">
+                     <div class="art-item-wraper">
+                        <div class="art-item-inner">
+                           <div class="art-item-img pos-rel">
+                               {% thumbnail cours.image_on_courses_list "200x200" quality=95 crop='center' as im  %}
+                              <a href="{% url 'course-detail-page' cours.name %}"><img src="{{ im.url }}" alt="art-img"></a>
+                               {% endthumbnail %}
+                           </div>
+                           <div class="art-item-content pos-rel">
+                              <h4 class="art-name"><a href="{% url 'course-detail-page' cours.name %}">{{ cours.name }}</a></h4>
+                              <div class="art-meta-info">
+                                 <div class="art-activity-btn">
+                                     <div class="art-activity-btn">وضعیت : {{ cours.situation }} </div>
+                                     <div class="art-activity-btn">قیمت : {{ cours.price | three_digits_currency }} </div>
+
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+         </div>
+      </section>
+{% endblock %}

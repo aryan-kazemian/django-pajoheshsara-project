@@ -1,0 +1,137 @@
+{% extends 'admin-panel/base/base.html' %}
+{% block content %}
+<div class="col-lg-12" style="text-align: right; margin-top: 50px">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>تغیر موضوع علمی</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="{% url 'admin-panel-change-science' pk %}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
+                                                                                        <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.title }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">موضوع</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.url_title}}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">موضوع در url</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.image_on_science_detail_page}}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">تصویر در جزییات</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.image_on_science_list_page }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">تصویر در لیست موضوعات علمی</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.text1}}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">متن 1 </label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.text2}}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">متن 2 </label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.text3}}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">متن 3 </label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <div class="row form-group">
+                                                                                                                                                                                            <div class="col-md-5"></div>
+                                                                                                                                                                                            <div class="col-12 col-md-6">
+                                                                                                                                                                                                {{ form.text4}}
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                            <div class="col col-md-1">
+                                                                                                                                                                                                <label for="text-input" class=" form-control-label">متن 4 </label>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                                                                                                                            <div class="col-md-5"></div>
+                                                                                                                                                                                            <div class="col-12 col-md-6">
+                                                                                                                                                                                                {{ form.text5}}
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                            <div class="col col-md-1">
+                                                                                                                                                                                                <label for="text-input" class=" form-control-label">متن 5 </label>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                                                                                                                            <div class="col-md-5"></div>
+                                                                                                                                                                                            <div class="col-12 col-md-6">
+                                                                                                                                                                                                {{ form.text6}}
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                            <div class="col col-md-1">
+                                                                                                                                                                                                <label for="text-input" class=" form-control-label">متن 6 </label>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                                                                                                                            <div class="col-md-5"></div>
+                                                                                                                                                                                            <div class="col-12 col-md-6">
+                                                                                                                                                                                                {{ form.text7}}
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                            <div class="col col-md-1">
+                                                                                                                                                                                                <label for="text-input" class=" form-control-label">متن 7 </label>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                                                                            <div class="col-md-5"></div>
+                                                                                                                                            <div class="col-12 col-md-6">
+                                                                                                                                                {{ form.text8}}
+                                                                                                                                            </div>
+                                                                                                                                            <div class="col col-md-1">
+                                                                                                                                                <label for="text-input" class=" form-control-label">متن 8 </label>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.is_active}}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">فعال / غیر فعال</label>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                    <button type="submit" class="btn btn-primary btn-sm" style="width: 100px">  ایجاد تفیرات </button>
+                                        </form>
+                                        <br>
+                                        <a href="{% url 'admin-panel-delete-science' pk %}"><button type="reset" class="btn btn-danger btn-sm" style="width: 100px">حذف هدف انجمن</button></a>
+                                    </div>
+
+                                </div>
+                            </div>
+{% endblock %}

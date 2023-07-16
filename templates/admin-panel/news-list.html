@@ -1,0 +1,83 @@
+{% extends 'admin-panel/base/base.html' %}
+{% block content %}
+<div class="col-md-12">
+<!-- DATA TABLE -->
+<section class="au-breadcrumb2" style="text-align: right">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                               <form class="au-form-icon--sm" action="{% url 'admin-panel-news-list' 'all' 1 %}" method="post">
+                                    {% csrf_token %}
+                                    {{ form.search_box }}
+                                    <button class="au-btn--submit2" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                               </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<div class="table-responsive table-responsive-data2" style="text-align: right">
+                                    <table class="table table-data2" style="text-align: right">
+                                        <thead style="text-align: right">
+                                            <tr style="text-align: right">
+                                                <th>فعال / غیر فعال</th>
+                                                <th>تاریخ</th>
+                                                <th>موضوع</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for n in news %}
+                                            <tr class="tr-shadow">
+                                                <td>
+                                                    {% if n.is_active %}
+                                                        <span class="status--process">فعال</span>
+                                                    {% else %}
+                                                        <span class="status--process" style="color: #7a0909">غیر فعال</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <span class="block-email">{{ n.date }}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="block-email">{{ n.title }}</span>
+                                                </td>
+
+                                                <td>
+                                                    <div class="table-data-feature">
+                                                        <a href="{% url 'admin-panel-change-news' n.pk %}"><button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="تغیر"><i class="zmdi zmdi-edit"></i></button></a>
+                                                        <a href="{% url 'admin-panel-delete-news' n.pk %}"><button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف" aria-describedby="tooltip658148"><i class="zmdi zmdi-delete"></i></button></a></div>
+                                                </td>
+                                            </tr>
+                                            <tr class="spacer"></tr>
+                                        {% endfor %}
+                                        <a href="{% url 'admin-panel-create-new-news' %}"><button type="button" class="btn btn-outline-secondary btn-lg">اضافه کردن</button></a>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            <br>
+                           {% if has_other_page %}
+                <div class="row"><div class="col-12" style="text-align: right">
+                                    <div class="basic-pagination mt-20">
+                                       <ul>
+                                       {% if has_next %}
+<button type="button" class="btn btn-secondary" disabled=""><a href="{% url 'admin-panel-news-list' search next_page_number %}" style='text-decoration: none; color: whitesmoke'>بعدی</a></button>
+                                        {% endif %}
+
+                                        {% for number in page_range %}
+<button type="button" class="btn btn-secondary active {% if current_page == number %}btn btn-secondary btn-lg active{% endif %}" disabled=""><a href="{% url 'admin-panel-news-list' search number %}" style='text-decoration: none; color: whitesmoke'>{{ number }}</a></button>
+                                        {% endfor %}
+                                        {% if has_previous %}
+<button type="button" class="btn btn-secondary" disabled=""><a href="{% url 'admin-panel-news-list' search previous_page_number %}" style='text-decoration: none; color: whitesmoke'>قبلی</a></button>
+                                        {% endif %}
+                                       </ul>
+                                    </div>
+                                 </div></div>
+                            {% endif %}
+<!-- END DATA TABLE -->
+</div>
+{% endblock %}

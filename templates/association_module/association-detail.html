@@ -1,0 +1,171 @@
+{% extends 'base/base.html' %}
+{% load thumbnail %}
+{% block title %}
+    جزییات انجمن
+{% endblock %}
+{% block content %}
+
+        <section class="page-title-area">
+         <div class="container">
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-12">
+                  <div class="page-title">
+                     <h2 class="breadcrumb-title mb-10">جزئیات انجمن</h2>
+                     <div class="breadcrumb-menu">
+                        <nav class="breadcrumb-trail breadcrumbs">
+                           <ul class="trail-items">
+                              <li class="trail-item trail-begin"><a href="{% url 'index-page' %}">خانه</a>
+                              </li>
+                              <li class="trail-item"><a href="{% url 'all-associations-page' 1 %}">انجمن ها</a>
+                              </li>
+                              <li class="trail-item trail-end"><span>جزئیات انجمن</span></li>
+                           </ul>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- art-details area start  -->
+      <section class="art-details-area pt-130 pb-0">
+         <div class="container">
+            <div class="art-details-wrapper">
+               <div class="row">
+                  <div class="col-xl-6 col-lg-5">
+                     <div class="art-item-img pos-rel art-details-img wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                                                        {% thumbnail association.association_image_for_detail_page "200x200" quality=95 crop='center' as im  %}
+                        <a class="image-popups" href="{{ im.url }}"><img src="{{ im.url }}" alt="art-img"></a>
+                                                        {% endthumbnail %}
+                     </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-7">
+                     <div class="art-details-content wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                        <div class="art-name-details">
+                           <h4 class="art-name mb-25">{{ association.association_name }}</h4>
+                           <p><h5>{{ association.association_short_information }}</h5></p>
+                        </div>
+                        <div class="artist-meta-info art-details-meta-info">
+                           <div class="art-meta-item artist-meta-item-border">
+                              <div class="art-meta-type">برگزار کننده</div>
+                              <div class="art-price"> <a href="{% url 'teacher-profile-page' association.association_organizer.username %}"><h5>{{ association.association_organizer.username }}@</h5></a></div>
+                           </div>
+                           <div class="art-meta-item artist-meta-item-border">
+                              <div class="art-meta-type">تعداد عضو</div>
+                              <div class="art-sale">{{ association.members_count }}</div>
+                           </div>
+                           <div class="art-meta-item">
+                              <div class="art-meta-type">زمان برگزاری انجمن</div>
+                              <div class="art-auction-ends">
+                                    <h5>{{ association.association_time }}</h5>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="art-details-information">
+                           <div class="art-information-tab-nav mb-20">
+                              <nav>
+                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#tab-nav1" type="button" role="tab" aria-selected="false">
+                                       <span class="profile-nav-button">توضیحات کامل
+                                       </span>
+                                    </button>
+                                    <button class="nav-link" id="nav-details-tab" data-bs-toggle="tab" data-bs-target="#tab-nav2" type="button" role="tab" aria-selected="false">
+                                       <span class="profile-nav-button"> اهداف انجمن
+                                       </span>
+                                    </button>
+                                 </div>
+                              </nav>
+                           </div>
+                           <div class="art-information-tab-contents mb-0">
+                              <div class="tab-content" id="nav-tabContent">
+                                 <div class="tab-pane fade active show" id="tab-nav1" role="tabpanel" aria-labelledby="nav-info-tab">
+                                    <div class="art-info-wrapper">
+                                        <p>
+                                            {{ association.association_full_information }}
+                                        </p>
+                                    </div>
+                                 </div>
+                                 <div class="tab-pane fade" id="tab-nav2" role="tabpanel" aria-labelledby="nav-details-tab">
+                                    <div class="art-user-wrapper">
+                                       <ul class="mb-20">
+                                           {% for goal in association.associationgoals_set.all %}
+                                          <li>{{ goal.goal }}</li>
+                                           {% endfor %}
+
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="art-details-action mt-50 mb-50">
+                           <div class="social__links art-item-share">
+                              <i class=""></i>
+                              <ul>
+                                  {% if association.twitter_link %}
+                                  <li><a href="{{ association.twitter_link }}"><i class="fab fa-twitter"></i></a></li>
+                                  {% endif %}
+                                  {% if association.instagram_link %}
+                                  <li><a href="{{ association.instagram_link }}"><i class="fab fa-instagram"></i></a></li>
+                                  {% endif %}
+                                  {% if association.facebook_link %}
+                                  <li><a href="{{ association.facebook_link }}"><i class="fab fa-facebook-f"></i></a></li>
+                                  {% endif %}
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- art-details area end  -->
+
+      <!-- related-items area start  -->
+      <section class="related-items-area pt-110 pb-100">
+         <div class="container">
+            <div class="row justify-content-center wow fadeInUp" style="visibility: hidden; animation-name: none;">
+               <div class="col-lg-8">
+                  <div class="section-title1 text-center">
+                     <h2 class="section-main-title1">انجمن های مرتبط</h2>
+                  </div>
+               </div>
+            </div>
+            <div class="row wow fadeInUp" style="visibility: hidden; animation-name: none;">
+
+                {% for assoc in related_associations %}
+                    {% if not assoc.association_name == association.association_name %}
+                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                  <div class="art-item-single mb-30">
+                     <div class="art-item-wraper">
+                        <div class="art-item-inner">
+                           <div class="art-item-img pos-rel">
+                              <div class="art-action">
+                                 <div class="art-action-collection"><i class="flaticon-plus-sign"></i></div>
+                              </div>
+                               {% thumbnail assoc.association_image "200x200" quality=95 crop='center' as im  %}
+                              <a href="{% url 'association-detail-page' assoc.association_name %}"><img src="{{ im.url}}" alt="art-img"></a>
+                               {% endthumbnail %}
+                           </div>
+                           <div class="art-item-content pos-rel">
+                              <h5 class="art-name"><a href="{% url 'association-detail-page' assoc.association_name %}">{{ assoc.association_name }}</a></h5>
+                              <div class="art-meta-info">
+                                 <div class="art-activity-btn">
+                                    وضعیت :
+                                     {{ assoc.situation }}
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+         </div>
+      </section>
+      <!-- related-items area end  -->
+
+{% endblock %}

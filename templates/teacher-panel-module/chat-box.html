@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+{% load polls_extra %}
+{% block header_refrences %}
+<link href="/static/assets/css/chat-ccs.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+        <section class="page-title-area">
+         <div class="container">
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-12">
+                  <div class="page-title">
+                     <h2 class="breadcrumb-title mb-10">پیام به دبیر</h2>
+                     <div class="breadcrumb-menu">
+                        <nav class="breadcrumb-trail breadcrumbs">
+                           <ul class="trail-items">
+                              <li class="trail-item trail-begin"><a href="{% url 'index-page' %}">خانه</a>
+                              </li>
+                              <li class="trail-item trail-begin"><a href="{% url 'teachers-list-page' %}">لیست دبیران</a>
+                              </li>
+                              <li class="trail-item"><a href="{% url 'teacher-profile-page' username %}">مشخصات دبیر</a>
+                              </li>
+                              <li class="trail-item trail-end"><span>پیام به دبیر</span></li>
+                           </ul>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+
+<div class="container">
+<div class="messaging">
+      <div class="inbox_msg">
+        <div class="inbox_people">
+          <div class="inbox_chat">
+          </div>
+        </div>
+        <div class="mesgs">
+          <div class="msg_history">
+                            {% for chat in chats %}
+              {% if chat.sender == 'teacher' %}
+                          <div class="incoming_msg">
+              <div class="incoming_msg_img">
+                  {% if teacher.avatar %}
+                  <img src="{{ teacher.avatar.url }}" alt="sunil" style="border-radius: 50%">
+                  {% else %}
+                  <img src="/static/assets/img/defult-avatar.png" alt="sunil" style="border-radius: 50%">
+                  {% endif %}
+              </div>
+              <div class="received_msg">
+                <div class="received_withd_msg">
+                  <p>{{ chat.text }}</p>
+                  <span class="time_date"> {{ chat.time }} | {{ chat.date | jalali_date}}</span></div>
+              </div>
+            </div>
+              {% else %}
+            <div class="outgoing_msg">
+              <div class="sent_msg">
+                <p>{{ chat.text }}</p>
+                <span class="time_date"> {{ chat.time }} | {{ chat.date | jalali_date }}</span> </div>
+            </div>
+
+              {% endif %}
+              {% endfor %}
+          </div>
+          <div class="type_msg">
+            <div class="input_msg_write">
+                <form method="post" action="{% url 'chat-page' username %}">
+                {% csrf_token %}
+                {{ form.text }}
+              <button type="submit" class="fill-btn msg_send_btn">ارسال</button></form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+{% endblock %}

@@ -1,0 +1,244 @@
+{% extends 'admin-panel/base/base.html' %}
+{% load polls_extra %}
+{% block content %}
+        <!-- PAGE CONTENT-->
+        <div class="page-content--bgf7">
+            <!-- BREADCRUMB-->
+            <section class="au-breadcrumb2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                                <form class="au-form-icon--sm" action="" method="post">
+                                    <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
+                                    <button class="au-btn--submit2" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END BREADCRUMB-->
+
+            <!-- STATISTIC-->
+            <section class="statistic statistic2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--green">
+                                <h3 class="number">{{ active_courses }}</h3>
+                                <span class="desc">تعداد دوره های فعال</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-calendar-note"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--orange">
+                                <h3 class="number">{{ year_profit | three_digits_currency }}</h3>
+                                <span class="desc">درآمد سال</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-money"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--blue">
+                                <h3 class="number">{{ month_profit | three_digits_currency }}</h3>
+                                <span class="desc">درآمد ماه</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-money"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--red">
+                                <h3 class="number">{{ today_profit | three_digits_currency }}</h3>
+                                <span class="desc">درآمد امروز</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-money"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END STATISTIC-->
+
+<div class="section__content section__content--p30" style="text-align: right">
+                    <div class="container-fluid">
+                        <div class="row">
+
+
+
+                            <div class="col-lg-6">
+                                <!-- USER DATA-->
+                                <div class="user-data m-b-30" style="height: 800px">
+                                    <h3 class="title-3 m-b-30">
+                                        <i class="zmdi zmdi-receipt"></i>لیست دوره های فعال</h3>
+                                    <div class="filters m-b-45">
+                                        <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                        <div class="rs-select2--dark rs-select2--sm rs-select2--border">
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive table-data">
+                                        <table class="table" style="text-align: right">
+                                            <thead>
+                                                <tr>
+                                                    <td><h4>لیست</h4></td>
+                                                    <td><h4>تعداد عضو</h4></td>
+                                                    <td><h4>نام دوره</h4></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for detail in courses_details %}
+                                                <tr>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>
+                                                                <a href="{% url 'admin-panel-courses-users-list' detail.id %}"><button type="button" class="btn btn-outline-link">لیست اعضا</button></a>
+                                                            </h6>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>{{ detail.member_counts }}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>{{ detail.course }}</h6>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- END USER DATA-->
+                            </div>
+
+
+
+
+
+
+                            <div class="col-lg-6">
+                                <div class="au-card au-card--no-shadow au-card--no-pad m-b-40" style="height: 800px">
+                                    <div class="au-card-title">
+                                        <div class="bg-overlay bg-overlay--blue"></div>
+                                        <h3>
+                                            <i class="zmdi zmdi-calendar"></i>تغیرات اخیر</h3>
+                                    </div>
+                                    <div class="au-task js-list-load">
+                                        <div class="au-task-list js-scrollbar3" style="height: 800px">
+                                            {% for log in logs %}
+                                                <div class="au-task__item au-task__item--primary">
+                                                    <div class="au-task__item-inner">
+                                                    <h5 class="task">
+                                                        {% if log.type == 'contact' %}
+                                                            پاسخ تماس با ما داده شد
+                                                        {% elif log.type == 'change_course' %}
+                                                            دوره تغیر داده شد
+                                                        {% elif log.type == 'new_course' %}
+                                                            دوره ی جدید ساخته شد
+                                                        {% elif log.type == 'delete_course' %}
+                                                            دوره خذف شد
+                                                        {% elif log.type == 'change_prerequisite' %}
+                                                            پیشنیاز دوره تغیر کرد
+                                                        {% elif log.type == 'new_prerequisite' %}
+                                                            پیشنیاز دوره ی جدید ساخته شد
+                                                        {% elif log.type == 'delete_prerequisite' %}
+                                                            پیشنیاز دوره حذف شد
+                                                        {% elif log.type == 'delete_course_category' %}
+                                                            دسته بندی دوره حذف شد
+                                                        {% elif log.type == 'change_course_category' %}
+                                                            دسته بندی دوره تغیر کرد
+                                                        {% elif log.type == 'new_course_category' %}
+                                                            دسته بندی دوره جدید ساخته شد
+                                                        {% elif log.type == 'new_association' %}
+                                                            انجمن جدید ساخته شد
+                                                        {% elif log.type == 'change_association' %}
+                                                            انجمن تغیر کرد
+                                                        {% elif log.type == 'delete_association' %}
+                                                            انجمن خذف شد
+                                                        {% elif log.type == 'new_association_goal' %}
+                                                            هدف انجمن جدید ساخته شد
+                                                        {% elif log.type == 'change_association_goal' %}
+                                                            هدف انجمن تغیر کرد
+                                                        {% elif log.type == 'delete_association_goal' %}
+                                                            هدف انجمن حذف شد
+                                                        {% elif log.type == 'new_association_category' %}
+                                                            دسته بندی انجمن جدید ساخته شد
+                                                        {% elif log.type == 'change_association_category' %}
+                                                            دسته بندی انجمن تغیر کرد
+                                                        {% elif log.type == 'delete_association_category' %}
+                                                            دسته بندی انجمن حذف شد
+                                                        {% elif log.type == 'new_science' %}
+                                                            موضوع علمی جدید ساخته دش
+                                                        {% elif log.type == 'change_science' %}
+                                                            موضوع علمی تغیر کرد
+                                                        {% elif log.type == 'delete_science' %}
+                                                            موضوع علمی حذف شد
+                                                        {% elif log.type == 'new_news' %}
+                                                            خیر جدید ساخته شد
+                                                        {% elif log.type == 'change_news' %}
+                                                            خبر تغیر کرد
+                                                        {% elif log.type == 'delete_news' %}
+                                                            خبر حذف شد
+                                                        {% elif log.type == 'new_user' %}
+                                                            کاربر جدید ساخته شد
+                                                        {% elif log.type == 'change_user' %}
+                                                            کاربر تغیر کرد
+                                                        {% elif log.type == 'change_main_setting' %}
+                                                            تنظیمات اصلی تغیر کرد
+                                                        {% elif log.type == 'delete_main_setting' %}
+                                                            تنظیمات اصلی حذف شد
+                                                        {% elif log.type == 'new_main_setting' %}
+                                                            تنظیمات اصلی  جدید ساخته شد
+                                                        {% elif log.type == 'change_about_us' %}
+                                                            درباره ی ما تغیر کرد
+                                                        {% elif log.type == 'delete_about_us' %}
+                                                            درباره ی ما حذف شد
+                                                        {% elif log.type == 'new_about_us' %}
+                                                            درباره ی ما جدید ساخته شد
+                                                        {% elif log.type == 'change_footer_category' %}
+                                                            دسته بندی فوتر تغیر کرد
+                                                        {% elif log.type == 'delete_footer_category' %}
+                                                            دسته بندی فوتر حذف شد
+                                                        {% elif log.type == 'new_footer_category' %}
+                                                            دسته بندی فوتر جدید ساخته شد
+                                                        {% elif log.type == 'change_footer_sub_category' %}
+                                                            لینک فوتر تغیر کرد
+                                                        {% elif log.type == 'delete_footer_sub_category' %}
+                                                            لینک فوتر حذف شد
+                                                        {% elif log.type == 'new_footer_sub_category' %}
+                                                            لینک فوتر جدید ساخته شد
+                                                        {% endif %}
+                                                    </h5>
+                                                    <h6>
+                                                        {{ log.user }} - {{ log.thing }}
+                                                    </h6>
+                                                    <span class="time">{{ log.date |  jalali_date }} - {{ log.time }}</span>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+
+                                        </div>
+                                        <div class="au-task__footer">
+                                            <button class="au-btn au-btn-load js-load-btn" style="display: none;">Loading...</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>
+{% endblock %}

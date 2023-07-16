@@ -1,0 +1,172 @@
+{%  extends 'base/base.html' %}
+{% block title %}
+    ثبت نام در پژوهش سرا
+{% endblock %}
+{% block content %}
+<section class="sign-up-area pt-130 pb-90" >
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-11">
+                  <div class="sign-up-wrapper pos-rel mb-40 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                     <div class=" sign-up-inner">
+                        <div class="sign-up-content" style="height: 727px">
+                           <h4>ساخت حساب کاربری</h4>
+                           <form class="sign-up-form" action="{%  url 'register-page' %}" method="post">
+                               {% csrf_token %}
+                               <div class="row">
+                                                                <div class="col-md-1" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.name.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.name }}
+                                                                </div>
+                                                             </div>
+                                                                <div class="col-md-3" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.family.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.family }}
+                                                                </div>
+                                                             </div>
+                                                                <div class="col-md-2" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.phone_number.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.phone_number }}
+                                                                </div>
+                                                                 {% if dose_it_has_phone_number_error %}
+                                                                        این شماره قبلا ثبت نام شده !!!
+                                                                 {% endif %}
+                                                             </div>
+                                                                <div class="col-md-2" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.home_phone_number.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                    <div class="single-input-unit">
+                                        {{ form.home_phone_number }}
+                                    </div>
+                                 </div>
+                                                                <div class="col-md-2" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.username.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.username }}
+                                                                </div>
+                                                                     {% if dose_it_has_username_error is True %}
+                                                                          این نام کاربری قبلا انتخواب شده !!!
+                                                                     {% endif %}
+                                                             </div>
+                                                                <div class="col-md-3" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.grade.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                    <div class="single-input-unit" style="margin-top: 10px;">
+                                        {{ form.grade }}
+                                    </div>
+                                 </div>
+                                                                <div class="col-md-2" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.day_birthday.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                    <div class="single-input-unit" style="margin-top: 10px;">
+                                        {{ form.day_birthday }}
+                                    </div>
+                                 </div>
+                                                                <div class="col-md-2" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.month_birthday.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                    <div class="single-input-unit" style="margin-top: 10px;">
+                                        {{ form.month_birthday }}
+                                    </div>
+                                 </div>
+                                                                <div class="col-md-2" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.year_birthday.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                    <div class="single-input-unit" style="margin-top: 15px;">
+                                        {{ form.year_birthday }}
+                                    </div>
+                                 </div>
+                                                                <div class="col-md-2" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.kode_meli.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                    <div class="single-input-unit">
+                                        {{ form.kode_meli }}
+                                    </div>
+                                 </div>
+                                                                <div class="col-md-2" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.school.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                    <div class="single-input-unit">
+                                        {{ form.school }}
+                                    </div>
+                                 </div>
+                                                                <div class="col-md-2" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.password.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                    <div class="single-input-unit">
+                                        {{ form.password }}
+                                    </div>
+                                 </div>
+                                                                <div class="col-md-2" style="margin-top: 15px">
+                                                                <div class="single-input-unit">
+                                                                    {{ form.confirm_password.label_tag }}
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                    <div class="single-input-unit">
+                                        {{ form.confirm_password }}
+                                    </div>
+                                    {{ form.confirm_password.errors }}
+                                 </div>
+                                                                </div>
+
+
+                              <div class="sign-up-btn">
+                                 <button type="submit" class="fill-btn">ساخت حساب</button>
+                                 <div class="note">حساب کاربری دارید؟ <a href="{% url 'login-page' %}" class="text-btn">ورود</a>
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                     <div class="sign-up-with-social">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+{% endblock %}

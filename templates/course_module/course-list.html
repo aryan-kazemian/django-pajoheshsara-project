@@ -1,0 +1,110 @@
+{% extends 'base/base.html' %}
+{% load thumbnail %}
+{% load polls_extra %}
+{% block title %}
+دوره ها
+{% endblock %}
+{% block content %}
+<section class="page-title-area">
+         <div class="container">
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-12">
+                  <div class="page-title">
+                     <h2 class="breadcrumb-title mb-10">دوره ها</h2>
+                     <div class="breadcrumb-menu">
+                        <nav class="breadcrumb-trail breadcrumbs">
+                           <ul class="trail-items">
+                              <li class="trail-item trail-begin"><a href="{% url 'index-page' %}">خانه</a>
+                              </li>
+                              <li class="trail-item trail-end"><span>دوره ها</span></li>
+                           </ul>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+<section class="artworks-area pt-130 pb-90">
+         <div class="container">
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-12">
+                  <div class="art-filter-row">
+                     <div class="filter-by-search mb-30">
+                         <div class="nice-select item-category-select" tabindex="0">
+                         {% if current_category %}
+                              <span class="current">{{ current_category }}</span>
+                         {% else %}
+                             <span class="current">همه</span>
+                         {% endif %}
+                             <ul class="list">
+                                <a href="{% url 'courses-list-page' 1 %}"><li data-value="0" class="option selected focus">همه</li></a>
+                                 {% for category in categories %}
+                                       <a href="{% url 'courses-filter-page' category.category_url 1 %}"><li data-value="{{ category.pk }}" class="option selected focus">{{ category.category }}</li></a>
+                                 {% endfor %}
+                             </ul></div>
+                     <form action="{% url 'courses-list-page' 1 %}" method="post">
+                         {% csrf_token %}
+                        <div class="filter-search-input">
+                           {{ form.search_box }}
+                           <button type='submit'><i class="fal fa-search"></i></button>
+                        </div>
+                     </form>
+                     </div>
+                     </div>
+               </div>
+            </div>
+
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                {% for cours in courses %}
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                  <div class="art-item-single mb-30">
+                     <div class="art-item-wraper">
+                        <div class="art-item-inner">
+                           <div class="art-item-img pos-rel">
+                               {% thumbnail cours.image_on_courses_list "200x200" quality=95 crop='center' as im  %}
+                              <a href="{% url 'course-detail-page' cours.name %}"><img src="{{ im.url }}" alt="art-img"></a>
+                               {% endthumbnail %}
+                           </div>
+                           <div class="art-item-content pos-rel">
+                              <h4 class="art-name"><a href="{% url 'course-detail-page' cours.name %}">{{ cours.name }}</a></h4>
+                              <div class="art-meta-info">
+                                 <div class="art-activity-btn">
+                                     <div class="art-activity-btn">وضعیت : {{ cours.situation }} </div>
+                                     <div class="art-activity-btn">قیمت : {{ cours.price | three_digits_currency }} </div>
+
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                {% endfor %}
+            {% if has_other_page %}
+                <div class="row"><div class="col-12">
+                                    <div class="basic-pagination mt-20">
+                                       <ul>
+                                        {% if has_previous %}
+                                            <li><a class="prev page-numbers" href="{% url 'courses-list-page' previous_page_number %}">
+                                                <i class="fal fa-angle-right"></i>
+                                             </a></li>
+                                        {% endif %}
+                                        {% for number in page_range %}
+                                            <a href="{% url 'courses-list-page' number %}"><li><span aria-current="page" class="page-numbers {% if current_page == number %}current{% endif %}">{{ number }}</span></li></a>
+                                        {% endfor %}
+                                        {% if has_next %}
+                                          <li><a class="prev page-numbers" href="{% url 'courses-list-page' next_page_number %}">
+                                                <i class="fal fa-angle-left"></i>
+                                             </a></li>
+                                        {% endif %}
+                                       </ul>
+                                    </div>
+                                 </div></div>
+            {% endif %}
+            </div>
+            </div>
+         </div>
+</section>
+{% endblock %}

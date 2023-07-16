@@ -1,0 +1,38 @@
+{% extends 'admin-panel/base/base.html' %}
+{% block content %}
+<div class="col-lg-12" style="text-align: right; margin-top: 50px">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>تغیر پیشنیاز دوره</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="{% url 'admin-panel-change-prerequisite-course' pk %}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
+                                                                                        <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.prerequisite }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">پیشنیاز</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                            <div class="col-12 col-md-6">
+                                                                                            {{ form.course }}
+                                                </div>
+                                                                                            <div class="col col-md-1">
+                                                    <label for="select" class=" form-control-label"> دوره</label>
+                                                </div>
+                                                                                        </div>
+
+                                                                                    <button type="submit" class="btn btn-primary btn-sm" style="width: 100px">  ایجاد تفیرات </button>
+                                        </form>
+                                        <br>
+                                        <a href="{% url 'admin-panel-delete-prerequisite' pk %}"><button type="reset" class="btn btn-danger btn-sm" style="width: 100px">حذف پیشنیاز</button></a>
+                                    </div>
+
+                                </div>
+                            </div>
+{% endblock %}

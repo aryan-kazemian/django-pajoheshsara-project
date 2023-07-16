@@ -1,0 +1,125 @@
+{% extends 'admin-panel/base/base.html' %}
+{% block content %}
+<div class="col-lg-12" style="text-align: right; margin-top: 50px">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>ساخت دوره ی جدید </strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="{% url 'admin-panel-create-new-course' %}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
+                                                                                        <div class="row form-group">
+                                                                                                <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.name }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">نام دوره</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                            <div class="col-12 col-md-6">
+                                                                                            {{ form.teacher }}
+                                                </div>
+                                                                                            <div class="col col-md-1">
+                                                    <label for="select" class=" form-control-label">مدرس دوره</label>
+                                                </div>
+                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                            <div class="col-12 col-md-6">
+                                                                                            {{ form.category }}
+                                                </div>
+                                                                                            <div class="col col-md-1">
+                                                    <label for="select" class=" form-control-label">دسته بندی دوره</label>
+                                                </div>
+                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                            <div class="col-12 col-md-6">
+                                                                                                {{ form.price }}
+                                                                                                </div>
+                                                                                            <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">قیمت دوره</label>
+                                                                                                </div>
+                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                            <div class="col-12 col-md-6">
+                                                                                                {{ form.situation }}
+                                                                                                </div>
+                                                                                            <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">وضعیت دوره</label>
+                                                                                                </div>
+                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.image_on_courses_list }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">تصویر لیست دوره ها</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                    {{ form.image_on_course_detail }}
+                                                                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">تصویر جزییات</label>
+                                                                                                </div>
+                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                                <div class="col-12 col-md-6">
+                                                                                                {{ form.short_information }}
+                                                </div>
+                                                                                                <div class="col col-md-1">
+                                                    <label for="textarea-input" class=" form-control-label">توضیحات کوتاه دوره</label>
+                                                </div>
+                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                            <div class="col-12 col-md-6">
+                                                                                                {{ form.full_information }}
+                                                                                            </div>
+                                                                                            <div class="col col-md-1">
+                                                    <label for="textarea-input" class=" form-control-label">توضیحات کامل دوره</label>
+                                                </div>
+                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                            <div class="col-12 col-md-6">
+                                                                                                {{ form.time }}
+                                                                                                </div>
+                                                                                            <div class="col col-md-1">
+                                                                                                    <label for="text-input" class=" form-control-label">زمان برگزاری دوره</label>
+                                                                                                </div>
+                                                                                        </div>
+                                                                                        <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                            <div class="col col-md-6">
+                                                                                                {{ form.is_active }}
+                                                </div>
+                                                                                            <div class="col col-md-1">
+                                                    <label class=" form-control-label">فعال / غیر فعال</label>
+                                                </div>
+                                                                                        </div>
+                                            <div class="row form-group">
+                                                                                            <div class="col-md-5"></div>
+                                                                                            <div class="col col-md-6">
+                                                                                                {{ form.register_time }}
+                                                </div>
+                                                <div class="col col-md-1">
+                                                    <label class=" form-control-label">پایان وقت ثبت نام</label>
+                                                </div>
+                                                </div>
+                                                                                    <button type="submit" class="btn btn-primary btn-sm" style="width: 100px">ساخت </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+{% endblock %}

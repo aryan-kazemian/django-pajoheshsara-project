@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% block title %}
+404
+{% endblock %}
+{% block content %}
+<section class="error-404-area pt-130 pb-90" data-background="">
+         <div class="container">
+            <div class="row justify-content-center wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-8">
+                  <div class="error-404-wrapper pos-rel mb-40">
+                     <div class=" error-404-inner">
+                        <div class="error-404-content text-center">
+                           <div class="error-404-img mb-30">
+                              <img src="/static/assets/img/shape/error-404.png" alt="error-img">
+                           </div>
+                           <h4>متاسفیم!</h4>
+                           <p class="mb-30">صفحه مورد نظر شما یافت نشد</p>
+                           <div class="error-404-btn">
+                              <a href="{% url 'index-page' %}" class="fill-btn">بازگشت به خانه</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+{% endblock %}

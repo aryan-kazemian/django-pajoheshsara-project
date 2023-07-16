@@ -1,0 +1,43 @@
+{%  load render_partial %}
+<html class="no-js" lang="zxx">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>{% block title %}پژوهش سرای نجف اباد{% endblock %}</title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="theme-style-mode" content="1">
+        <!-- CSS here -->
+    {%  include 'base/includes/css filse.html' %}
+    {% block header_refrences %}{% endblock %}
+</head>
+
+<body class="body-bg active-dark-mode">
+     <!--[if lte IE 9]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+      <![endif]-->
+    <main>
+    <!-- HEADER here -->
+    {% render_partial 'home_module.views.header_render_partial_component' %}
+    <!-- CONTENT here -->
+
+    <br>
+    <br>
+    <br>
+    {% block content %}{% endblock %}
+        </main>
+    <!-- FOOTER here -->
+    {% render_partial 'home_module.views.footer_render_partial_component' %}
+    <!-- LOADING here -->
+    {% include 'base/includes/loading.html' %}
+    <!-- BACK TO TOP here -->
+    {% include 'base/includes/back-to-top.html' %}
+    {% render_partial 'home_module.views.decoration_render_partial_component' %}
+                 <!-- JS here -->
+    {% include 'base/includes/js-files.html' %}
+    {% block footer_refrences %}
+    {% endblock %}
+
+
+</body>
+</html>

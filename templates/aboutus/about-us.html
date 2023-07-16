@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% block title %}
+در باره ی ما
+{% endblock %}
+{% block content %}
+        <section class="page-title-area">
+         <div class="container">
+            <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+               <div class="col-lg-12">
+                  <div class="page-title">
+                     <h2 class="breadcrumb-title mb-10">درباره ی ما</h2>
+                     <div class="breadcrumb-menu">
+                        <nav class="breadcrumb-trail breadcrumbs">
+                           <ul class="trail-items">
+                              <li class="trail-item trail-begin"><a href="{% url 'index-page' %}">خانه</a>
+                              </li>
+                              <li class="trail-item trail-end"><span>درباره ی ما</span></li>
+                           </ul>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- contact area start  -->
+       {% if setting %}
+   <section class="contact-area pt-120 pb-90" data-background="">
+         <div class="container">
+            <div class="row">
+                      <div class="col-lg-12">
+                  <div class="contact-wrapper pos-rel mb-40 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                     <div class=" contact-inner">
+                        <div class="contact-content">
+                           <h4>درباره ی ما</h4>
+                           <p class="mb-35">{{ setting.main_text }}</p>
+                        </div>
+                         <div class="contact-content">
+                             <p>
+                                 {{ setting.second_text }}
+                             </p>
+                             <p>                               ادرس :
+                             {{ setting.address }}</p>
+                             <p>                                تلفن :
+                             {{ setting.phone_number }}</p>
+                         </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- contact area end  -->
+              {% endif %}
+
+{% endblock %}

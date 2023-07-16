@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+{% block title %}
+زرین پال
+{% endblock %}\
+{% block content %}
+<p>{{ text }}</p>
+<button>
+<a href="{% url 'add-to-purchases'  course_name %}">رفتن به مرحله ی بعد </a>
+</button>
+{% endblock %}

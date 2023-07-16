@@ -1,0 +1,27 @@
+{%  extends 'base/base.html' %}
+{% block title %}
+    ثبت نام در پژوهش سرا
+{% endblock %}
+{% block content %}
+<section class="sign-up-area pt-130 pb-90" >
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-7">
+                  <div class="sign-up-wrapper pos-rel mb-40 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                     <div class=" sign-up-inner">
+                        <div class="sign-up-content">
+                            <h6>شما بیشتر از 4 بار کد را اشتباه وارد کردید لطفا در {{ time }} دباره امتحان کنید </h6>
+                            <form action="{% url 'security-cod-after-4-missed-cod-page' username full_time %}" method="post">
+                            {% csrf_token %}
+                            <button class="fill-btn" type="submit">امتحان مجدد</button>
+                            </form>
+                        </div>
+                     </div>
+                     <div class="sign-up-with-social">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+{% endblock %}
